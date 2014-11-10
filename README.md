@@ -1,0 +1,4 @@
+reduce
+======
+
+CCD data reduction
