@@ -1,4 +1,32 @@
-reduce
+reduce.py - A Python tool to calibrate fits files using iraf
 ======
 
-CCD data reduction
+Usage:   python reduce.py -m --master bias/dark/flat
+                          -r --reduce [files]
+                          -b --bias [file]
+                          -d --dark [file]
+                          -f --flat [file(s)]
+                          -t --telescope telescopename
+
+Typical use:
+> cd /tmp/reduce
+cd to the folder with the fits files to reduce
+
+> python /path/to/reduce.py -t telescopename -m bias
+create a master bias, called MasterBias.fits
+
+> python /path/to/reduce.py -t telescopename -m dark [-b filename.fits]
+create a master dark, called Masterdark.fits, using filename.fits
+filename.fits is the bias frame to use. If it is not  specified, the default
+filename 'MasterBias.fits' is used
+
+> python /path/to/reduce.py -t telescopename -m flat [-b filename.fits] [-d filename.fits]
+create the master flats, called MasterFlat-filter.fits.
+Filters are automatically recognized. As before one can specify master
+dark and bias to use wth -b and -d, or just use the defaults.
+
+> python /path/to/reduce.py -t telescopename -r [-b filename.fits] [-d filename.fits] \
+            [-f filter1.fits filter2.fits ... ]
+reduce all the Light frames. Specify the master bias, dark or flats to use
+or use the default ones.
+
